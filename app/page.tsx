@@ -38,7 +38,7 @@ export default async function HomePage() {
             <div className="flex justify-center items-center m-auto h-screen p-8">
                 {posts.length === 0 && <div className="w-full">
                     <div className="flex justify-center items-center m-auto h-screen">
-                        <code className="font-mono text-white">Lens publications coming soon</code>
+                        <code className="font-mono text-pastel">Lens publications coming soon</code>
                     </div>
                 </div>}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
