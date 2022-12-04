@@ -16,6 +16,8 @@ export const polygonProvider = new RotationProvider(polygonProviders, 137);
 
 // Deployment block of LensHubProxy
 export const STARTING_BLOCK = 28384641;
+// Max number of blocks per queryFilter, rpc limit
+export const BLOCK_LIMIT = 10000;
 const lensHubProxyAddress = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d";
 
 export const lensHubProxyContract = new Contract(
