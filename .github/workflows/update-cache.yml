@@ -30,7 +30,7 @@ jobs:
             echo "tree is clean"
           else
             git config --global user.name 'Cache bot'
-            git commit -am "chore: automated cache update [skip cypress]"
+            git commit -am "chore: automated posts cache update [skip cypress]"
             git push
           exit
           fi

@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"tailwindcss --input ./app/globals.css --output ./app/output.css --watch\"",
     "build": "tailwindcss ./app/globals.css --output ./app/output.css && next build",
-    "build:populate-cache": "npx esbuild src/static-build/populateCache.ts --tsconfig=./tsconfig.json --bundle --outfile=scripts/populate-cache.js --platform=node --target=es6",
+    "build:populate-cache": "npx esbuild static-build/populateCache.ts --tsconfig=./tsconfig.json --bundle --outfile=scripts/populate-cache.js --platform=node --target=esnext",
+    "cache:update": "yarn build:populate-cache && CACHE_PATH=static-build node scripts/populate-cache.js",
     "start": "next start",
     "lint": "next lint",
     "export": "next export"
