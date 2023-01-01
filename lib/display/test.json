@@ -1,0 +1,3 @@
+{
+  "text": "`\nconsole.log(“Hello Lens!”)\nprint(“Hello Lens!”)\nSystem.out.println(“Hello Lens!”);\necho “Hello Lens!”;\n<p>Hello Lens!</p>\ncout << “Hello Lens!”;\ndisp(“Hello Lens!”);\nprintf(“Hello Lens!”);\n``"
+}

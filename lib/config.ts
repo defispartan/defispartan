@@ -22,7 +22,7 @@ export const STARTING_BLOCK = 36432066;
 export const BLOCK_LIMIT = 10000;
 
 // Manually exlude publications, if applicable
-export const EXCLUDE_PUB_IDS = [1];
+export const EXCLUDE_PUB_IDS = ["1"];
 
 const lensHubProxyAddress = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d";
 
