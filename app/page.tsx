@@ -1,17 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import { formatUnits } from 'ethers/lib/utils';
-import { lensHubProxyContract, polygonProvider, PROFILE_ID, STARTING_BLOCK } from '../lib/config';
+import { EXCLUDE_PUB_IDS, lensHubProxyContract, polygonProvider, PROFILE_ID, STARTING_BLOCK } from '../lib/config';
+import { PostBlock } from '../lib/display/PostBlock';
 import { getURILink } from '../lib/helpers/getURILink';
+import Markup from '../lib/helpers/Markup';
 import { Publication } from '../lib/helpers/types';
+import { Post } from '../static-build/posts';
 
 
 async function getProfilePublications() {
     const postFilter = lensHubProxyContract.filters.PostCreated(PROFILE_ID);
 
-    // TO-DO: Iterative queryFilter reading from and writing to static-build directory 
-    //const latestBlock = polygonProvider.getBlockNumber();
-    //const latestQueriedBlock = STARTING_BLOCK;
-    const publications: Publication[] = [];
+    const staticPostFetcher = new Post();
+    const posts = (await staticPostFetcher.get()).posts.filter((post) => !EXCLUDE_PUB_IDS.includes(post.args.pubId));
+    /* const publications: Publication[] = [];
     try {
         const events = await lensHubProxyContract.queryFilter(postFilter, 36149422, 36159422);
         for (const event of events) {
@@ -24,26 +26,21 @@ async function getProfilePublications() {
         }
     } catch (e) {
         console.log(e)
-    }
-    return publications;
+    } */
+    return posts;
 }
 
 
 export default async function HomePage() {
     const posts = await getProfilePublications();
-    console.log(posts.length)
-    // TO-DO: Fetch with React "use" hook and add next.js loading template page
     return (
         <main>
-            <div className="flex justify-center items-center m-auto h-screen p-8">
-                {posts.length === 0 && <div className="w-full">
-                    <div className="flex justify-center items-center m-auto h-screen">
-                        <code className="font-mono text-white">Lens publications coming soon</code>
-                    </div>
-                </div>}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+            <div className="container px-5 py-24 mx-auto">
+                <div className="flex flex-wrap -m-4 justify-center">
                     {
-                        posts.map((post, i) => <div className="p-4 bg-gray-400 rounded-md flex items-center justify-center" key={i}>{post.content}</div>)
+                        posts.map((post, i) => {
+                            return (<PostBlock post={post} key={i} />)
+                        })
                     }
                 </div>
             </div>

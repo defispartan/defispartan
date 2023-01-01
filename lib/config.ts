@@ -14,8 +14,16 @@ export const IPFS_GATEWAY = "https://lens.infura-ipfs.io/ipfs/";
 
 export const polygonProvider = new RotationProvider(polygonProviders, 137);
 
-// Deployment block of LensHubProxy
-export const STARTING_BLOCK = 28384641;
+// Deployment block of LensHubProxy, or your first post to speed up indexing
+//export const STARTING_BLOCK = 28384641;
+export const STARTING_BLOCK = 36432066;
+
+// Max number of blocks per queryFilter, rpc limit
+export const BLOCK_LIMIT = 10000;
+
+// Manually exlude publications, if applicable
+export const EXCLUDE_PUB_IDS = ["1"];
+
 const lensHubProxyAddress = "0xDb46d1Dc155634FbC732f92E853b10B288AD5a1d";
 
 export const lensHubProxyContract = new Contract(
